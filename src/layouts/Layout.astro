@@ -4,36 +4,62 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import logo from '../assets/img/cropped-logo.jpg';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article';
+  noindex?: boolean;
+  breadcrumbs?: { name: string; href: string }[];
+  schema?: object[];
 }
 
-const { title, description, image, type = 'website' } = Astro.props;
-const fullTitle = `${title} - ${site.domain}`;
+const { title, description, image, imageAlt, type = 'website', noindex = false, breadcrumbs = [], schema = [] } = Astro.props;
+const fullTitle = `${title} | ${site.brand}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 
-const jsonLd = {
+const business = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
+  '@id': `${site.url}/#empresa`,
   name: site.name,
   url: site.url,
+  logo: new URL(logo.src, Astro.site).href,
+  image: ogImage ?? new URL(logo.src, Astro.site).href,
   telephone: site.phone,
   email: site.email,
+  foundingDate: site.foundingDate,
+  hasMap: site.mapsUrl,
+  sameAs: [site.mapsUrl],
+  openingHoursSpecification: site.openingHours.map((h) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: h.days, opens: h.opens, closes: h.closes })),
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'C. Espinar, 14, Piso bajo, J',
+    streetAddress: site.streetAddress,
     postalCode: '30320',
     addressLocality: 'Fuente Álamo de Murcia',
     addressRegion: 'Región de Murcia',
     addressCountry: 'ES',
   },
-  areaServed: 'Región de Murcia',
+  geo: { '@type': 'GeoCoordinates', ...site.geo },
+  areaServed: site.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
 };
+
+const breadcrumbList = breadcrumbs.length > 1 && {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: b.name,
+    item: new URL(b.href, Astro.site).href,
+  })),
+};
+
+const jsonLd = [business, breadcrumbList, ...schema].filter(Boolean);
 ---
 
 <!doctype html>
@@ -43,6 +69,7 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
     <meta property="og:locale" content="es_ES" />
@@ -52,7 +79,11 @@ const jsonLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={site.name} />
     {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="flex min-h-screen flex-col">

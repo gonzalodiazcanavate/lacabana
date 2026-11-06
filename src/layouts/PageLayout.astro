@@ -15,12 +15,18 @@ interface Props {
   type?: 'website' | 'article';
   cta?: boolean;
   crumbs?: { label: string; href?: string }[];
+  schema?: object[];
 }
 
-const { title, description, heading = title, subtitle, eyebrow, bg, bgAlt = '', type, cta = true, crumbs = [] } = Astro.props;
+const { title, description, heading = title, subtitle, eyebrow, bg, bgAlt = '', type, cta = true, crumbs = [], schema } = Astro.props;
+const breadcrumbs = [
+  { name: 'Inicio', href: '/' },
+  ...crumbs.filter((c) => c.href).map((c) => ({ name: c.label, href: c.href! })),
+  { name: title, href: Astro.url.pathname },
+];
 ---
 
-<Layout title={title} description={description} image={bg?.src} type={type}>
+<Layout title={title} description={description} image={bg?.src} imageAlt={bgAlt || undefined} type={type} breadcrumbs={breadcrumbs} schema={schema}>
   <section class="relative isolate overflow-hidden bg-ink-900 text-white">
     {
       bg ? (

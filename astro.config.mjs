@@ -7,6 +7,6 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   compressHTML: false,
-  integrations: [sitemap()],
+  integrations: [sitemap({ lastmod: new Date() })],
   vite: { plugins: [tailwindcss()] },
 });

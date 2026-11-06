@@ -1,27 +1,88 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import image from '../assets/img/construccion-piscina.webp';
+
+const faqs = [
+  {
+    q: '¿Cuánto tarda la construcción de una piscina?',
+    a: 'Depende del tamaño, del tipo de vaso y de la licencia. Tras la aprobación del ayuntamiento, la obra de una piscina de vivienda unifamiliar suele llevar varias semanas. En el presupuesto te indicamos un plazo estimado para tu caso.',
+  },
+  {
+    q: '¿Necesito licencia de obra para construir una piscina?',
+    a: 'Normalmente sí: el ayuntamiento exige licencia o comunicación previa según el tipo de obra y la normativa urbanística de la parcela. Nos encargamos de gestionar la documentación en Murcia, Fuente Álamo y el resto de municipios de la Región.',
+  },
+  {
+    q: '¿Construís piscinas en Fuente Álamo y sus pedanías?',
+    a: 'Sí. Nuestra sede está en Fuente Álamo de Murcia y trabajamos en Las Palas, Balsapintada, La Pinilla, Las Cuevas y urbanizaciones de la zona, además de en el municipio de Murcia.',
+  },
+  {
+    q: '¿Cuánto cuesta una piscina?',
+    a: 'El precio depende de las dimensiones, el tipo de piscina, el acabado, el equipamiento de depuración y el estado de la parcela. Envíanos las medidas y la ubicación y te damos un presupuesto aproximado gratis y sin compromiso.',
+  },
+  {
+    q: '¿Podéis reformar una piscina existente?',
+    a: 'Sí. Realizamos reformas de piscinas ya construidas: cambio de revestimiento, reparación de vaso, nuevo coronamiento y renovación del entorno.',
+  },
+];
 ---
 
 <ServiceLayout
   title="Construcción de Piscinas en Murcia"
-  description="La construcción de piscinas en Murcia es una de nuestras especialidades en Reformas La Cabaña S.L. No esperes más y solicita tu presupuesto."
-  formHeading="¿Qué tipo de piscinas hacemos?"
+  description="Construcción de piscinas en Murcia y Fuente Álamo: obra completa, licencias y acabados. Pide tu presupuesto gratis y sin compromiso a Reformas La Cabaña."
+  formHeading="Tipos de piscinas que construimos en Murcia y Fuente Álamo"
   image={image}
-  imageAlt="Piscina de una vivienda particular de grandes dimensiones aún en construcción. Imagen destacada de la página Construcción de Piscinas en Murcia, propiedad de Reformas La Cabaña S.L."
+  imageAlt="Piscina de una vivienda particular en construcción en Murcia."
+  faqs={faqs}
 >
   <p>
-    En Reformas La Cabaña S.L tenemos la maquinaria, el conocimiento y el capital humano necesario para la construcción
-    de piscinas en Murcia para particulares. Si quieres saber más sobre nuestros servicios u obtener un presupuesto para
-    tu piscina rellena el siguiente formulario:
+    En Reformas La Cabaña S.L tenemos la maquinaria, el conocimiento y el equipo necesarios para la construcción de
+    piscinas en Murcia y en Fuente Álamo para particulares. Nos ocupamos de toda la obra, desde la excavación hasta el
+    acabado, y te asesoramos para elegir la solución que mejor encaja con tu parcela y tu presupuesto.
+  </p>
+
+  <h3>Piscinas de obra de hormigón</h3>
+  <p>
+    Son la opción más habitual en viviendas de la zona: el vaso se adapta a cualquier forma y tamaño y admite distintos
+    revestimientos, como gresite, porcelánico o liner armado.
+  </p>
+
+  <h3>Piscinas de uso privado en chalets y adosados</h3>
+  <p>
+    Diseñamos piscinas para viviendas unifamiliares, incluidos adosados con parcela reducida y chalets con terreno amplio,
+    habituales en Fuente Álamo, sus pedanías y las urbanizaciones de la Región de Murcia.
+  </p>
+
+  <h3>Reforma de piscinas existentes</h3>
+  <p>
+    Si ya tienes piscina, podemos renovar el revestimiento, reparar filtraciones, sustituir el coronamiento o rehacer el
+    entorno. Consulta también nuestras <a href="/reforma-integral-en-murcia/">reformas integrales</a> si quieres
+    actualizar toda la vivienda.
   </p>
 
   <Fragment slot="after">
-    <h3>Más información sobre construcción de piscinas en Murcia</h3>
+    <h2>Cómo es el proceso de construcción de una piscina</h2>
+    <ol>
+      <li><strong>Visita y presupuesto:</strong> estudiamos la parcela, hablamos de tus necesidades y te enviamos un presupuesto.</li>
+      <li><strong>Licencias:</strong> preparamos la documentación para el ayuntamiento.</li>
+      <li><strong>Excavación y estructura:</strong> excavamos, armamos y ejecutamos el vaso con maquinaria propia.</li>
+      <li><strong>Instalaciones:</strong> fontanería, depuración e iluminación.</li>
+      <li><strong>Revestimiento y acabados:</strong> impermeabilizamos, revestimos el vaso y rematamos el entorno.</li>
+    </ol>
+
+    <h2>Licencias y normativa para piscinas en Murcia y Fuente Álamo</h2>
     <p>
-      Si quieres saber más sobre aspectos clave de la construcción de piscinas, como los materiales más utilizados,
-      precios estimados, permisos necesarios, coste y permisos para llenado, restricciones urbanísticas y medioambientales
-      o particularidades como las piscinas de agua salada, visita <a href="/blog-de-reformas/">nuestro blog</a>.
+      Cada ayuntamiento aplica su propia normativa urbanística, así que los requisitos, los plazos y las tasas, como el
+      ICIO, pueden variar. Conocemos el procedimiento en el municipio de Murcia y en Fuente Álamo, donde tenemos nuestra
+      sede; puedes ver más detalles en la página de
+      <a href="/reformas-en-fuente-alamo/">reformas en Fuente Álamo</a>.
+    </p>
+
+    <h2>De qué depende el precio de una piscina</h2>
+    <p>
+      El coste final depende de las dimensiones, la profundidad, el acabado, el sistema de depuración y las
+      características del terreno. Para hacerte una idea general de cómo se compone el presupuesto de una obra, lee
+      <a href="/cuanto-cuesta-una-reforma/">¿Cuánto cuesta una reforma?</a> o
+      <a href="/presupuesto-reforma-murcia/">solicita tu presupuesto</a> con las medidas y la ubicación de tu piscina.
     </p>
   </Fragment>
 </ServiceLayout>

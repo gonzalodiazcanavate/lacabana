@@ -1,0 +1,52 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import image from '../assets/img/equipo-reformas-1.webp';
+import { services } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Hacéis reformas en toda la ciudad de Murcia?',
+    a: 'Sí. Trabajamos en el municipio de Murcia, en sus pedanías y en el resto de la Región. Nuestra sede está en Fuente Álamo de Murcia, a poca distancia de la capital.',
+  },
+  {
+    q: '¿Cuánto cuesta una reforma en Murcia?',
+    a: 'Depende del tipo de reforma, la superficie, los materiales y las tasas municipales. Puedes solicitar un presupuesto aproximado gratis y sin compromiso describiendo tu obra.',
+  },
+  {
+    q: '¿Gestionáis las licencias de obra?',
+    a: 'Sí. Te ayudamos con la documentación para el ayuntamiento, el ICIO y la gestión de residuos cuando la obra lo requiere.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Reformas en Murcia"
+  heading="Empresa de Reformas en Murcia"
+  description="Empresa de reformas en Murcia: reformas integrales, cocinas, baños, suelos, piscinas y obra nueva. Más de 20 años de experiencia. Presupuesto gratis."
+  formHeading="Reformas en Murcia con una empresa de confianza"
+  image={image}
+  imageAlt="Equipo de Reformas La Cabaña trabajando en una reforma en Murcia."
+  faqs={faqs}
+>
+  <p>
+    En Reformas La Cabaña S.L llevamos más de 20 años realizando reformas en Murcia y su Región. Contamos con equipo
+    propio de más de 10 profesionales, por lo que nos encargamos de todo el proceso: presupuesto, licencias, obra y
+    gestión de residuos. Si buscas una empresa de reformas en Murcia, estos son nuestros servicios:
+  </p>
+  <ul>
+    {services.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+  </ul>
+  <p>
+    Si tu vivienda está en Fuente Álamo o sus pedanías, consulta nuestra página de
+    <a href="/reformas-en-fuente-alamo/">reformas en Fuente Álamo</a>, donde también tenemos nuestra sede.
+  </p>
+
+  <Fragment slot="after">
+    <h2>Presupuesto y licencias para tu reforma en Murcia</h2>
+    <p>
+      Antes de empezar conviene saber qué factores influyen en el coste, como los materiales, la mano de obra, el ICIO y
+      la licencia de obras. Lee <a href="/cuanto-cuesta-una-reforma/">¿Cuánto cuesta una reforma?</a> o
+      <a href="/presupuesto-reforma-murcia/">solicita tu presupuesto de reforma en Murcia</a> sin compromiso.
+    </p>
+  </Fragment>
+</ServiceLayout>

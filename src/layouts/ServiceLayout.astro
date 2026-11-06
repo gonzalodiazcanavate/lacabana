@@ -11,13 +11,37 @@ interface Props {
   formHeading: string;
   image: ImageMetadata;
   imageAlt: string;
+  faqs?: { q: string; a: string }[];
 }
 
-const { title, description, heading, formHeading, image, imageAlt } = Astro.props;
+const { title, description, heading, formHeading, image, imageAlt, faqs = [] } = Astro.props;
 const path = Astro.url.pathname;
 const hasAfter = Astro.slots.has('after');
 
 const perks = ['Presupuesto gratis y sin compromiso', 'Más de 20 años de experiencia', 'Equipo propio de más de 10 profesionales'];
+
+const schema: object[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: title,
+    description,
+    url: new URL(path, Astro.site).href,
+    provider: { '@id': `${site.url}/#empresa` },
+    areaServed: site.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+  },
+];
+if (faqs.length) {
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
 ---
 
 <PageLayout
@@ -27,7 +51,7 @@ const perks = ['Presupuesto gratis y sin compromiso', 'Más de 20 años de exper
   eyebrow="Servicios · Reformas La Cabaña"
   bg={image}
   bgAlt={imageAlt}
-  crumbs={[{ label: 'Servicios' }]}
+  schema={schema}
 >
   <div class="container-page grid gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_20rem]">
     <div class="min-w-0">
@@ -49,6 +73,35 @@ const perks = ['Presupuesto gratis y sin compromiso', 'Más de 20 años de exper
           </div>
         )
       }
+
+      {
+        faqs.length > 0 && (
+          <section class="mt-14">
+            <h2 class="mb-4 text-2xl font-extrabold text-ink-900">Preguntas frecuentes</h2>
+            <div class="divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+              {faqs.map((faq) => (
+                <details class="group p-5 open:bg-brand-50/40">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink-900">
+                    {faq.q}
+                    <span class="text-2xl leading-none text-brand-600 transition group-open:rotate-45" aria-hidden="true">+</span>
+                  </summary>
+                  <p class="mt-3 leading-7 text-gray-700">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <section class="content-prose mt-14">
+        <h2>Reformas en tu zona</h2>
+        <p>
+          Trabajamos en todo el municipio de Murcia y en la Región. Consulta nuestra página de
+          <a href="/reformas-en-murcia/">reformas en Murcia</a> o, si estás cerca de nuestra sede, la de
+          <a href="/reformas-en-fuente-alamo/">reformas en Fuente Álamo</a>. También puedes
+          <a href="/presupuesto-reforma-murcia/">pedir un presupuesto de reforma</a> sin compromiso.
+        </p>
+      </section>
     </div>
 
     <aside class="space-y-6 lg:sticky lg:top-28 lg:self-start">

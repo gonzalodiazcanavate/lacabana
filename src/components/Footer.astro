@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
     <div>
       <h3 class="mb-4 text-base font-bold text-white">Donde trabajamos</h3>
       <ul class="space-y-2">
-        <li><a href="/reforma-integral-en-murcia/" class="hover:text-brand-500">Murcia</a></li>
+        <li><a href="/reformas-en-murcia/" class="hover:text-brand-500">Murcia</a></li>
         <li><a href="/reformas-en-fuente-alamo/" class="hover:text-brand-500">Fuente Álamo de Murcia</a></li>
       </ul>
     </div>
@@ -32,6 +32,7 @@ const year = new Date().getFullYear();
         <p>{site.address}</p>
         <p>Teléfono: <a href={site.phoneHref} class="hover:text-brand-500">{site.phone}</a></p>
         <p>Email: <a href={`mailto:${site.email}`} class="break-all hover:text-brand-500">{site.email}</a></p>
+        <p><a href={site.reviewUrl} rel="noopener noreferrer" class="font-semibold text-brand-500 hover:underline">Déjanos tu reseña en Google</a></p>
       </address>
     </div>
   </div>
