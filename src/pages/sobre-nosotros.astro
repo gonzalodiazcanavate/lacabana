@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import hero from '../assets/img/mezclando-cemento.jpeg';
+import pintando from '../assets/img/trabajadores-pintando-1.jpeg';
+import equipo from '../assets/img/trabajadores.webp';
+import { site } from '../data/site';
+
+const stats = [
+  { value: '20+', label: 'Años de experiencia' },
+  { value: '10+', label: 'Profesionales en plantilla' },
+  { value: '100+', label: 'Reformas completadas' },
+];
+---
+
+<PageLayout
+  title="Sobre Nosotros"
+  description="Descubre todo Sobre nosotros, el equipo de Reformas La Cabaña S.L en esta página. Aprende sobre nuestra historia y nuestros valores."
+  eyebrow="Conoce al equipo"
+  bg={hero}
+  bgAlt="Obreros realizando una reforma. Imagen destacada de la sección sobre nosotros y reforma integral en Murcia, propiedad de Reformas La Cabaña S.L."
+>
+  <div class="container-page relative z-10 -mt-10 max-w-4xl">
+    <dl class="grid grid-cols-3 divide-x divide-gray-200 rounded-xl bg-white py-6 text-center shadow-lg ring-1 ring-black/5">
+      {
+        stats.map((s) => (
+          <div class="flex flex-col-reverse px-2">
+            <dt class="text-xs font-bold uppercase tracking-wide text-gray-500 sm:text-sm">{s.label}</dt>
+            <dd class="text-3xl font-extrabold text-brand-600 sm:text-4xl">{s.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <div class="container-page max-w-4xl py-14">
+    <div class="content-prose">
+      <section id="nosotros">
+        <h2>Quienes Somos</h2>
+        <p>
+          En esta sección te explicaremos todo lo que necesitas saber sobre nosotros. Somos LA CABAÑA SL, una empresa de
+          construcción especializada en la reforma integral de viviendas por toda la Región de Murcia. Ofrecemos los
+          mejores servicios del sector a un precio asequible.
+        </p>
+        <p>
+          Actualmente tenemos más de 10 empleados y llevamos más de 20 años en este negocio y tenemos decenas de clientes
+          que pueden atestiguar la calidad de nuestro trabajo.
+        </p>
+      </section>
+
+      <section id="historia">
+        <h2>Nuestra historia</h2>
+        <p>
+          LA CABAÑA SL nació hace más de 20 años cuando su fundador decidió emprender y fundar su propia empresa,
+          aprovechando los años que pasó trabajando en el sector de la construcción y la experiencia adquirida en el
+          mismo.
+        </p>
+        <Image src={pintando} alt="Trabajadores pintando una vivienda" widths={[480, 768, 1024]} sizes="(min-width: 768px) 768px, 100vw" class="rounded-xl shadow" />
+        <p>
+          Lo que empezó como un proyecto de un solo profesional autónomo ha crecido hasta convertirse en una empresa con
+          más de 10 trabajadores especializados, manteniendo siempre la misma filosofía: trabajo bien hecho, trato cercano
+          y compromiso con cada cliente.
+        </p>
+        <p>Hoy seguimos afrontando cada proyecto con el mismo entusiasmo que el primer día.</p>
+      </section>
+
+      <section id="equipo">
+        <h2>Nuestro Equipo</h2>
+        <p>
+          El capital humano es uno de nuestros puntos fuertes, nuestros trabajadores cuentan con la formación y
+          especializaciones adecuadas a cada uno de nuestros servicios. Tenemos estructuristas, pintores encofradores…
+          Todo lo que puedas necesitar para tu reforma te lo proporcionan nuestros profesionales, la mayoría de ellos ya
+          oficiales de primera y bien formados.
+        </p>
+        <Image src={equipo} alt="Equipo de trabajadores de Reformas La Cabaña S.L." widths={[480, 768, 1024]} sizes="(min-width: 768px) 768px, 100vw" class="rounded-xl shadow" />
+      </section>
+
+      <section id="donde-estamos">
+        <h2>Donde Estamos</h2>
+        <p>
+          Aunque trabajamos por todo el sur y levante español, nuestras oficinas se encuentran en Fuente Álamo de Murcia,
+          en la Calle Espinar Nº 14, PB J, puedes acudir a ellas si buscas un trato más personal o si quieres conocer a
+          nuestro equipo administrativo, pero si prefieres una alternativa más cómoda también puedes llamar al
+          <a href={site.phoneHref}>{site.phone}</a> o escribirnos un email a
+          <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+      </section>
+
+      <section id="cuanto-vale">
+        <h2>Cuanto vale mi reforma</h2>
+        <p>
+          Cada reforma es un mundo y cada cliente tiene unas necesidades, por lo que es difícil dar una cifra concreta.
+          Una reforma parcial puede costar menos de 1000€ si es algo sencillo y una reforma completa puede costar
+          fácilmente más de 10000€.
+        </p>
+        <p>
+          Por eso ofrecemos a los clientes la posibilidad de consultar con nosotros para obtener un presupuesto
+          aproximado, resolver cualquier tipo de duda respecto a su reforma o simplemente saber más sobre nosotros.
+          Rellena el siguiente formulario y nos pondremos en contacto contigo para más detalles:
+        </p>
+      </section>
+    </div>
+
+    <div class="panel mt-10">
+      <QuoteForm idPrefix="nosotros" />
+    </div>
+  </div>
+</PageLayout>

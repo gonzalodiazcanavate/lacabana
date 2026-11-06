@@ -1,0 +1,201 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import PostCard from '../components/PostCard.astro';
+import { site } from '../data/site';
+import hero from '../assets/img/equipo-reformas-1.webp';
+import cemento from '../assets/img/mezclando-cemento.jpeg';
+import ladrillos from '../assets/img/trabajador-ladrillos.webp';
+import julio from '../assets/img/julio.jpg';
+import obraNueva from '../assets/img/obra-nueva.webp';
+import cocina from '../assets/img/Cocina.webp';
+import piscina from '../assets/img/piscina.webp';
+import reformas from '../assets/img/reformas.jpeg';
+import suelo from '../assets/img/suelo.webp';
+import bano from '../assets/img/bano-1.webp';
+
+const features = [
+  {
+    title: 'Trabajo de Calidad',
+    text: 'Nos preocupamos por tu vivienda, la calidad de la reforma es nuestra máxima prioridad.',
+    href: '/sobre-nosotros/#historia',
+    icon: 'M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z',
+  },
+  {
+    title: 'Gestión de Personal',
+    text: 'Nuestros trabajadores gozan de la mejor formación y herramientas del sector.',
+    href: '/sobre-nosotros/#equipo',
+    icon: 'M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z',
+  },
+  {
+    title: 'Seguridad',
+    text: 'La seguridad es una máxima en todas nuestras reformas.',
+    href: '/sobre-nosotros/#nosotros',
+    icon: 'M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z',
+  },
+];
+
+const counters = [
+  { value: '100+', label: 'Reformas Completadas' },
+  { value: '10+', label: 'Trabajadores' },
+  { value: '97%', label: 'Clientes Satisfechos' },
+  { value: '100+', label: 'Planes y Presupuestos' },
+];
+
+const works = [
+  { title: 'Obra Nueva', href: '/obra-nueva-en-murcia/', img: obraNueva, alt: 'Cimientos de una vivienda de obra nueva' },
+  { title: 'Cocinas', href: '/reforma-de-cocinas-en-murcia/', img: cocina, alt: 'Cocina americana con tonos blancos y suelo de madera' },
+  { title: 'Construcción de Piscinas', href: '/construccion-de-piscinas-en-murcia/', img: piscina, alt: 'Piscina en construcción' },
+  { title: 'Reformas', href: '/reforma-integral-en-murcia/', img: reformas, alt: 'Imagen que muestra la reforma de una vivienda.' },
+  { title: 'Suelos', href: '/reformas-de-suelos-en-murcia/', img: suelo, alt: 'Suelo recién instalado' },
+  { title: 'Baños', href: '/reforma-de-banos-en-murcia/', img: bano, alt: 'Baño con paredes blancas, suelo y muebles de madera, un retrete, un lavabo, un espejo y una ducha con mampara de mármol. Imagen propiedad de Reformas La Cabaña S.L.' },
+];
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout
+  title="Reformas La Cabaña SL"
+  description="Las mejores reformas de Murcia a un precio asequible. Contacta con nosotros para obtener un presupuesto gratis y sin compromiso."
+  image={hero.src}
+>
+  <section class="relative isolate overflow-hidden bg-ink-900 text-white">
+    <Image src={hero} alt="" widths={[768, 1280, 1920]} sizes="100vw" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40" loading="eager" />
+    <div class="container-page py-24 text-center sm:py-32 lg:py-40">
+      <h1 class="mx-auto max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+        Reformas y Obra nueva en la Región de Murcia
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-200">
+        Reformas en la Región de Murcia –
+        <a href="/contacto/" class="font-semibold underline decoration-brand-500 underline-offset-4">Contacta con nosotros</a>
+        para obtener un
+        <a href="/presupuesto-reforma-murcia/" class="font-semibold underline decoration-brand-500 underline-offset-4">presupuesto</a>
+        preciso y acorde al tipo de reforma.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="/sobre-nosotros/" class="btn btn-outline">Sobre Nosotros</a>
+        <a href="/contacto/" class="btn btn-primary">Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page relative z-10 -mt-12">
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        features.map((f) => (
+          <div class="flex min-h-64 flex-col rounded-lg border-t-4 border-brand-500 bg-white p-6 shadow-md">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
+              <svg class="h-7 w-7 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={f.icon} />
+              </svg>
+            </span>
+            <h2 class="mt-4 text-xl font-bold text-ink-900">{f.title}</h2>
+            <p class="mt-2 text-gray-600">{f.text}</p>
+            <a href={f.href} class="mt-auto pt-4 text-sm font-bold uppercase tracking-wide text-brand-700 hover:underline">Leer más</a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container-page grid items-center gap-12 py-20 lg:grid-cols-2">
+    <div class="relative">
+      <Image src={cemento} alt="Obreros mezclando cemento" widths={[480, 768, 1024]} sizes="(min-width: 1024px) 560px, 100vw" class="w-full rounded-xl object-cover shadow-lg" />
+      <Image src={ladrillos} alt="Trabajador colocando ladrillos" widths={[240, 360, 480]} sizes="(min-width: 640px) 240px, 50vw" class="absolute -bottom-8 -right-2 w-1/2 rounded-xl border-4 border-white object-cover shadow-xl sm:-right-6" />
+      <div class="absolute -left-2 -top-6 rounded-xl bg-brand-500 px-6 py-4 text-center text-ink-900 shadow-xl sm:-left-6">
+        <p class="text-4xl font-extrabold">20+</p>
+        <p class="text-xs font-bold uppercase tracking-wide">Años de experiencia</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-3xl font-extrabold text-ink-900 sm:text-4xl">Expertos en reformas integrales</h2>
+      <p class="mt-2 text-lg font-semibold text-brand-700">Decenas de clientes satisfechos</p>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-3"><span class="font-bold text-brand-600" aria-hidden="true">✓</span><a href="/presupuesto-reforma-murcia/" class="font-semibold hover:text-brand-700">Presupuestamos tu reforma gratis</a></li>
+        <li class="flex gap-3"><span class="font-bold text-brand-600" aria-hidden="true">✓</span><a href="/contacto/" class="font-semibold hover:text-brand-700">Respuesta en menos de tres días</a></li>
+      </ul>
+      <div class="mt-8 flex flex-wrap items-center gap-6">
+        <a href={site.phoneHref} class="rounded-xl bg-gray-50 px-5 py-3 shadow-sm">
+          <span class="block text-lg font-extrabold text-ink-900">{site.phone}</span>
+          <span class="text-sm text-gray-600">¿Tienes alguna duda?</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <Image src={julio} alt="Julio César Benítez" width={56} height={56} class="h-14 w-14 rounded-full object-cover" />
+          <div>
+            <p class="font-bold text-ink-900">Julio César Benítez</p>
+            <p class="text-sm text-gray-600">Administrador</p>
+          </div>
+        </div>
+      </div>
+      <p class="mt-8 text-gray-600">
+        Pide tu presupuesto o contáctanos sobre cualquier duda sin compromiso, intentaremos responderte lo antes posible.
+      </p>
+      <a href="/presupuesto-reforma-murcia/" class="btn btn-primary mt-6">Pide tu presupuesto</a>
+    </div>
+  </section>
+
+  <section class="border-t-4 border-brand-500 bg-ink-900 py-14 text-white">
+    <dl class="container-page grid grid-cols-2 gap-8 text-center lg:grid-cols-4">
+      {
+        counters.map((c) => (
+          <div class="flex flex-col">
+            <dt class="order-2 mt-1 text-sm font-semibold uppercase tracking-wide">{c.label}</dt>
+            <dd class="text-5xl font-extrabold text-brand-500">{c.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="container-page py-20">
+    <h2 class="text-center text-3xl font-extrabold text-ink-900 sm:text-4xl">Nuestro Trabajo</h2>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        works.map((w) => (
+          <a href={w.href} class={`group relative block h-72 overflow-hidden rounded-xl shadow-md`}>
+            <Image src={w.img} alt={w.alt} widths={[400, 640, 960]} sizes="(min-width: 1024px) 384px, (min-width: 640px) 50vw, 100vw" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 flex items-end bg-gradient-to-t from-ink-900/80 to-transparent p-5">
+              <h3 class="text-xl font-bold text-white">{w.title}</h3>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-20">
+    <div class="container-page grid gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl font-extrabold text-ink-900 sm:text-4xl">Pide tu Presupuesto</h2>
+        <p class="mb-6 mt-4 text-gray-600">
+          Mándanos un correo con las características de la reforma que necesitas y te responderemos con un presupuesto
+          aproximado. Intentamos responder lo antes posible, si crees que nos estamos demorando demasiado puedes llamar
+          al <a href={site.phoneHref} class="font-semibold text-brand-700 hover:underline">{site.phone}</a>.
+        </p>
+        <QuoteForm idPrefix="home" />
+      </div>
+      <div>
+        <h2 class="text-3xl font-extrabold text-ink-900 sm:text-4xl">Donde Trabajamos</h2>
+        <p class="mt-4 text-gray-600">
+          En Reformas La Cabaña SL trabajamos en todos los municipios de la Región de Murcia y el levante español.
+          Ofrecemos guías y servicios especializados en los principales municipios de la Región. Puedes visitar las
+          distintas páginas especializadas que tenemos para reformas en los municipios de
+          <a href="/reformas-en-fuente-alamo/" class="font-semibold text-brand-700 hover:underline">Fuente Álamo</a>, Murcia y otras ubicaciones.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <h2 class="text-center text-3xl font-extrabold text-ink-900 sm:text-4xl">Últimos Proyectos y Noticias</h2>
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
+      {
+        posts.map((post) => (
+          <PostCard href={`/${post.id}/`} title={post.data.title} excerpt={post.data.excerpt} image={post.data.image} imageAlt={post.data.imageAlt} categories={post.data.categories} date={post.data.date} />
+        ))
+      }
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,34 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import image from '../assets/img/Cocina.webp';
+---
+
+<ServiceLayout
+  title="Reforma parcial Murcia"
+  description="Pequeñas reformas en Murcia a precios competitivos. Solicita un presupuesto para tu reforma parcial en Murcia sin coste ni compromiso."
+  formHeading="Obtén un presupuesto para tu reforma parcial en Murcia"
+  image={image}
+  imageAlt="Cocina americana con tonos blancos y un suelo de madera. Imagen destacada de la página Reforma Parcial en Murcia, propiedad de Reformas La Cabaña S.L."
+>
+  <p>
+    En Reformas La Cabaña S.L tenemos todo lo necesario para ese pequeño arreglo que quieres hacerle a tu vivienda. Desde
+    una mano de pintura hasta crear nuevas habitaciones, te ofrecemos todos los servicios relacionados con la reforma de
+    viviendas que puedas imaginar. <a href="/contacto/">Contacta con nosotros</a> o rellena este formulario para obtener
+    un <a href="/presupuesto-reforma-murcia/">presupuesto aproximado</a> para tu reforma parcial en Murcia:
+  </p>
+
+  <Fragment slot="after">
+    <h3>Información sobre mi Reforma</h3>
+    <p>
+      No es fácil encontrar información sobre reformas parciales en general y aún más en la Región de Murcia en
+      específico. En Reformas La Cabaña S.L queremos aportar los conocimientos adquiridos tras más de 20 años en el
+      sector para facilitar que nuestros clientes tomen las decisiones correctas a la hora de reformar sus viviendas.
+    </p>
+    <p>
+      En <a href="/blog-de-reformas/">nuestro blog</a> puedes encontrar artículos de todo tipos que te ayudarán a elegir
+      el tipo de reforma idóneo para tu vivienda. Si estás preocupado por el precio y quieres hacerte una idea antes de
+      contactarnos, puedes echarle un vistazo a nuestro artículo «<a href="/cuanto-cuesta-una-reforma/">¿Cuánto cuesta una reforma?</a>»
+      para hacerte una idea del coste.
+    </p>
+  </Fragment>
+</ServiceLayout>

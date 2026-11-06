@@ -1,0 +1,29 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import image from '../assets/img/reforma-bano.webp';
+---
+
+<ServiceLayout
+  title="Reforma de Baños en Murcia"
+  description="En Reformas La Cabaña S.L tenemos todo lo necesario para la reforma de baños en Murcia. Solicita un presupuesto gratuito y sin compromiso."
+  formHeading="Consúltanos para Reformar tu Baño"
+  image={image}
+  imageAlt="Baño de colores claros y de apariencia moderna. Imagen destacada de la página reforma de baños en Murcia, propiedad de Reformas La Cabaña S.L."
+>
+  <p>
+    En Reformas La Cabaña S.L tenemos todo lo necesario para llevar a cabo la reforma de baños en Murcia con los máximos
+    estándares de calidad, acabados profesionales y con garantías de durabilidad. Para
+    <a href="/sobre-nosotros/">saber más sobre nuestros servicios</a>, <a href="/contacto/">contactar con nosotros</a> u
+    obtener un presupuesto aproximado rellena este formulario:
+  </p>
+
+  <Fragment slot="after">
+    <h3>Más información sobre reforma de baños en Murcia</h3>
+    <p>
+      Si quieres saber más sobre la reforma de cuartos de baño u otros temas relacionados con el mundo de las reformas y
+      la construcción, visita <a href="/blog-de-reformas/">nuestro blog</a>. En él encontrarás artículos de todo tipo que
+      te serán útiles para tomar las decisiones pertinentes a la hora de planificar tu reforma e incluso pequeños consejos
+      de mantenimiento para ahorrar gastos en el futuro.
+    </p>
+  </Fragment>
+</ServiceLayout>

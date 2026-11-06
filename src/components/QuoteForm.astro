@@ -1,0 +1,66 @@
+---
+interface Props {
+  idPrefix?: string;
+}
+
+const { idPrefix = 'form' } = Astro.props;
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+const field =
+  'mt-1.5 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-base text-ink-900 placeholder:text-gray-400 transition-colors hover:border-gray-400 focus:border-brand-500 focus:bg-white focus:outline-2 focus:outline-brand-500';
+const label = 'block text-sm font-bold text-ink-900';
+---
+
+<form data-quote-form data-endpoint={endpoint} class="space-y-5">
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label for={`${idPrefix}-nombre`} class={label}>Nombre</label>
+      <input id={`${idPrefix}-nombre`} name="nombre" type="text" required autocomplete="name" class={field} />
+    </div>
+    <div>
+      <label for={`${idPrefix}-email`} class={label}>Email</label>
+      <input id={`${idPrefix}-email`} name="email" type="email" required autocomplete="email" class={field} />
+    </div>
+  </div>
+  <div>
+    <label for={`${idPrefix}-telefono`} class={label}>Teléfono</label>
+    <input id={`${idPrefix}-telefono`} name="telefono" type="tel" autocomplete="tel" class={field} />
+  </div>
+  <div>
+    <label for={`${idPrefix}-mensaje`} class={label}>Mensaje</label>
+    <textarea id={`${idPrefix}-mensaje`} name="mensaje" rows="5" required class:list={[field, 'resize-y']}></textarea>
+  </div>
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+  <button type="submit" class="btn btn-primary">Solicitar presupuesto</button>
+  <p data-form-status role="status" class="text-sm font-semibold"></p>
+</form>
+
+<script>
+  import { site } from '../data/site';
+
+  document.querySelectorAll<HTMLFormElement>('form[data-quote-form]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('[data-form-status]')!;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      if (data.get('_gotcha')) return;
+
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        const body = `Nombre: ${data.get('nombre')}\nEmail: ${data.get('email')}\nTeléfono: ${data.get('telefono')}\n\n${data.get('mensaje')}`;
+        location.href = `mailto:${site.email}?subject=${encodeURIComponent('Solicitud de presupuesto')}&body=${encodeURIComponent(body)}`;
+        return;
+      }
+
+      status.textContent = 'Enviando...';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        status.textContent = 'Mensaje enviado. Te responderemos lo antes posible.';
+      } catch {
+        status.textContent = `No se pudo enviar el mensaje. Escríbenos a ${site.email}.`;
+      }
+    });
+  });
+</script>

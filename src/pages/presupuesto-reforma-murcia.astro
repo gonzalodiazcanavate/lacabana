@@ -1,0 +1,90 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import image from '../assets/img/presupuesto.webp';
+import { site } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Cuando estará listo mi presupuesto?',
+    a: 'Normalmente, solemos contactar vía email de dos a tres días hábiles después de recibir la propuesta de presupuesto. Si quieres presentarte en nuestras oficinas o contactar por otros medios visita la página de <a href="/contacto/">contacto</a>. También puedes obtener un presupuesto de reforma en Murcia si acuerdas con nosotros una reunión en el lugar de la obra.',
+  },
+  {
+    q: '¿Cómo de exacto es mi presupuesto?',
+    a: 'Lo aproximado del presupuesto depende de lo descriptivo que sea con lo que buscas en tu reforma. Generalmente solemos ser bastante precisos pero, en casos especiales, podemos requerir de un segundo contacto con más detalles. Igualmente, si llegamos a un acuerdo, podremos visitar el lugar de la obra y a partir de ahí dar un presupuesto definitivo ajustado a la realidad.',
+  },
+  {
+    q: '¿Qué debo incluir en mi solicitud de presupuesto?',
+    a: 'Es importante que incluyas la ubicación de la reforma, el tipo de obra que quieres realizar, los materiales y el plazo. A más detalles incluyas, como fotografías del espacio a reformar, más exacto será tu presupuesto.',
+  },
+];
+---
+
+<PageLayout
+  title="Presupuesto de Reforma en Murcia"
+  description="Solicita un presupuesto de reforma en Murcia, sin coste y sin compromiso aquí mismo. Tendrás un coste aproximado de reforma lo antes posible."
+  eyebrow="Gratis y sin compromiso"
+  bg={image}
+  bgAlt="Persona elaborando el presupuesto de una reforma en una mesa. Propiedad de Reformas La Cabaña S.L."
+>
+  <div class="container-page max-w-4xl py-14">
+    <h2 class="section-title">Pide el Presupuesto de tu reforma</h2>
+    <p class="mt-6 text-lg leading-8">
+      Obtén tu presupuesto de reforma en Murcia mandando un correo con las características de la reforma que necesitas y
+      te responderemos con un presupuesto aproximado. Intentamos responder lo antes posible, si crees que nos estamos
+      demorando demasiado puedes llamar al
+      <a href={site.phoneHref} class="font-semibold text-brand-700 hover:underline">{site.phone}</a>.
+    </p>
+
+    <div class="panel mt-8">
+      <QuoteForm idPrefix="presupuesto" />
+    </div>
+
+    <div class="content-prose mt-14">
+      <h2>Aspectos a tener en cuenta para el coste de tu reforma</h2>
+      <p>
+        A la hora de calcular el coste de tu reforma debes de tener en cuenta una serie de factores, empezaremos
+        enumerando aquellos que son comunes a todas las obras:
+      </p>
+      <ul>
+        <li>El coste de los materiales a utilizar.</li>
+        <li>El coste de la mano de obra.</li>
+        <li>El coste de mantenimiento.</li>
+      </ul>
+      <p>También debemos de tener en cuenta otros factores más específicos del tipo de reforma y del municipio, como:</p>
+      <ul>
+        <li>El coste de alquilar un contenedor de residuos</li>
+        <li>El Impuesto de Construcciones, Instalaciones y Obras municipal.</li>
+        <li>El importe de la licencia de obras, en caso de necesitarla.</li>
+      </ul>
+      <p>
+        Si quieres saber más sobre regulaciones y licencias específicas de los distintos municipios de la región, échale
+        un vistazo a nuestra sección donde trabajamos en la cabecera de la página y busca tu municipio. Como ejemplo
+        puedes visitar nuestra página sobre <a href="/reformas-en-fuente-alamo/">Reformas en Fuente Álamo</a> para
+        hacerte una idea del formato de la sección.
+      </p>
+      <p>
+        También te recomendamos que revises la
+        <a href="https://www.murcia.es/web/urbanismo/normas-urbanisticas" rel="noopener noreferrer">regulación en materia urbanística de la región</a>,
+        especialmente si vas a realizar una obra de mucha envergadura o eres una promotora buscando oportunidades de obra
+        nueva. Además deberás tener en cuenta la regulación municipal en materia urbanística y el ICIO de tu localidad.
+      </p>
+
+      <h2>Preguntas Frecuentes</h2>
+    </div>
+
+    <div class="mt-4 divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+      {
+        faqs.map((faq) => (
+          <details class="group p-5 open:bg-brand-50/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink-900">
+              {faq.q}
+              <span class="text-2xl leading-none text-brand-600 transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 leading-7 text-gray-700 [&_a]:font-semibold [&_a]:text-brand-700 [&_a]:underline" set:html={faq.a} />
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</PageLayout>

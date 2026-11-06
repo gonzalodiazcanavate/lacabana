@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  href: string;
+  title: string;
+  excerpt: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  categories?: string[];
+  date?: Date;
+}
+
+const { href, title, excerpt, image, imageAlt, categories = [], date } = Astro.props;
+const dateLabel = date && new Intl.DateTimeFormat('es-ES', { dateStyle: 'long', timeZone: 'UTC' }).format(date);
+---
+
+<article data-post data-categories={categories.join('|')} class="group flex flex-col overflow-hidden rounded-xl border-b-4 border-transparent bg-white shadow-md transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-xl">
+  <a href={href} class="block overflow-hidden">
+    <Image src={image} alt={imageAlt} widths={[400, 640, 800]} sizes="(min-width: 768px) 480px, 100vw" class="aspect-video w-full object-cover transition duration-300 group-hover:scale-105" />
+  </a>
+  <div class="flex flex-1 flex-col p-6">
+    {dateLabel && <p class="text-xs font-semibold uppercase tracking-wide text-gray-500">{dateLabel}</p>}
+    <h3 class="mt-2 text-xl font-bold text-ink-900"><a href={href} class="hover:text-brand-700">{title}</a></h3>
+    <p class="mt-2 text-gray-600">{excerpt}</p>
+    {
+      categories.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2" aria-label="Categorías">
+          {categories.slice(0, 3).map((c) => <li class="chip">{c}</li>)}
+          {categories.length > 3 && <li class="chip">+{categories.length - 3}</li>}
+        </ul>
+      )
+    }
+    <a href={href} class="mt-auto inline-block pt-5 text-sm font-bold uppercase tracking-wide text-brand-700 hover:underline" aria-label={`Leer más: ${title}`}>Leer más &rarr;</a>
+  </div>
+</article>

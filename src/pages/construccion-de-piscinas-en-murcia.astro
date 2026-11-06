@@ -1,0 +1,27 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import image from '../assets/img/construccion-piscina.webp';
+---
+
+<ServiceLayout
+  title="Construcción de Piscinas en Murcia"
+  description="La construcción de piscinas en Murcia es una de nuestras especialidades en Reformas La Cabaña S.L. No esperes más y solicita tu presupuesto."
+  formHeading="¿Qué tipo de piscinas hacemos?"
+  image={image}
+  imageAlt="Piscina de una vivienda particular de grandes dimensiones aún en construcción. Imagen destacada de la página Construcción de Piscinas en Murcia, propiedad de Reformas La Cabaña S.L."
+>
+  <p>
+    En Reformas La Cabaña S.L tenemos la maquinaria, el conocimiento y el capital humano necesario para la construcción
+    de piscinas en Murcia para particulares. Si quieres saber más sobre nuestros servicios u obtener un presupuesto para
+    tu piscina rellena el siguiente formulario:
+  </p>
+
+  <Fragment slot="after">
+    <h3>Más información sobre construcción de piscinas en Murcia</h3>
+    <p>
+      Si quieres saber más sobre aspectos clave de la construcción de piscinas, como los materiales más utilizados,
+      precios estimados, permisos necesarios, coste y permisos para llenado, restricciones urbanísticas y medioambientales
+      o particularidades como las piscinas de agua salada, visita <a href="/blog-de-reformas/">nuestro blog</a>.
+    </p>
+  </Fragment>
+</ServiceLayout>

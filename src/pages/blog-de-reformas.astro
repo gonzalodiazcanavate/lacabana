@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const categories = [...new Set(posts.flatMap((p) => p.data.categories))].sort((a, b) => a.localeCompare(b, 'es'));
+---
+
+<PageLayout
+  title="Blog de Reformas"
+  description="Blog de reformaslacabaña.com en el que podrás encontrar publicaciones y noticias sobre obra nueva y reformas en Murcia."
+  heading="Nuestro Blog"
+  eyebrow="Consejos y novedades"
+  subtitle="Aprende más sobre nuestro trabajo y sobre reformas y construcciones en general echando un vistazo a las entradas de nuestro blog de reformas en Murcia."
+>
+  <Fragment slot="banner">
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="/sobre-nosotros/" class="btn btn-outline">Sobre Nosotros</a>
+      <a href="/contacto/" class="btn btn-primary">Contáctanos</a>
+    </div>
+  </Fragment>
+
+  <div class="container-page py-14">
+    <h2 class="section-title">Últimos Proyectos y Noticias</h2>
+    <p class="mt-6 max-w-3xl text-lg">
+      Nuestro Blog de reformas te ofrece todo lo que necesitas saber sobre reformas en Murcia, obra nuevas, suelos,
+      cocinas o construcción de piscinas. Además de información relevante a la hora de iniciar tu reforma.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-2" role="group" aria-label="Filtrar por categoría" data-filter>
+      <button type="button" class="chip" data-cat="" aria-pressed="true">Todas</button>
+      {categories.map((c) => <button type="button" class="chip" data-cat={c} aria-pressed="false">{c}</button>)}
+    </div>
+
+    <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <PostCard
+            href={`/${post.id}/`}
+            title={post.data.title}
+            excerpt={post.data.excerpt}
+            image={post.data.image}
+            imageAlt={post.data.imageAlt}
+            categories={post.data.categories}
+            date={post.data.date}
+          />
+        ))
+      }
+    </div>
+    <p data-empty hidden class="mt-8 text-gray-600">No hay entradas en esta categoría.</p>
+  </div>
+</PageLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter] [data-cat]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-post]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+
+  function apply(cat: string) {
+    let visible = 0;
+    cards.forEach((card) => {
+      const show = !cat || (card.dataset.categories ?? '').split('|').includes(cat);
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+    empty.hidden = visible > 0;
+  }
+
+  buttons.forEach((b) => b.addEventListener('click', () => {
+    const cat = b.dataset.cat ?? '';
+    history.replaceState(null, '', cat ? `?categoria=${encodeURIComponent(cat)}` : location.pathname);
+    apply(cat);
+  }));
+
+  const initial = new URLSearchParams(location.search).get('categoria') ?? '';
+  if (initial && [...buttons].some((b) => b.dataset.cat === initial)) apply(initial);
+</script>

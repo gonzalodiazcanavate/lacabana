@@ -1,0 +1,16 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="bg-brand-500 text-ink-900">
+  <div class="container-page flex flex-col items-center justify-between gap-6 py-12 text-center md:flex-row md:text-left">
+    <div>
+      <h2 class="text-2xl font-extrabold sm:text-3xl">¿Hablamos de tu reforma?</h2>
+      <p class="mt-2 max-w-xl font-medium">Presupuesto aproximado gratis y sin compromiso. Respondemos en menos de tres días.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/presupuesto-reforma-murcia/" class="btn bg-ink-900 text-white hover:bg-ink-700">Pedir presupuesto</a>
+      <a href={site.phoneHref} class="btn border-2 border-ink-900 hover:bg-ink-900 hover:text-white">Llamar {site.phone}</a>
+    </div>
+  </div>
+</section>

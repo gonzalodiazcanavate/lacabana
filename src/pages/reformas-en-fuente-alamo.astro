@@ -1,0 +1,171 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import hero from '../assets/img/fuente-alamo.webp';
+import fondo from '../assets/img/fondo-seccion.webp';
+import reformas from '../assets/img/reformas.jpeg';
+import hormigonera from '../assets/img/trabajadores-hormigonera.webp';
+import trabajadores from '../assets/img/trabajadores.webp';
+import { site } from '../data/site';
+
+const reasons = [
+  'Presupuesto en menos de 48 horas',
+  'Más de 50 reformas exitosas en Fuente Álamo',
+  'Gestión de permisos y licencias de obra',
+  'Atención directa en nuestra sede en Fuente Álamo',
+];
+
+const works = [
+  { img: reformas, alt: 'Recibidor y pasillo de una vivienda recién reformada en Fuente Álamo de Murcia.', caption: 'Reforma de una vivienda.' },
+  { img: hormigonera, alt: 'Imagen de unos trabajadores realizando una reforma con una hormigonera.', caption: 'Construcción de un apartamento' },
+  { img: trabajadores, alt: 'Imagen de unos trabajadores en una obra tomando un descanso.', caption: 'Reforma integral de una oficina.' },
+];
+---
+
+<PageLayout
+  title="Reformas en Fuente Álamo"
+  description="Descubre nuestros servicios de reformas en Fuente Álamo de Murcia. En Reformas La Cabaña S.L llevamos a cabo tu reforma en tu municipio."
+  eyebrow="Donde trabajamos"
+  bg={hero}
+  bgAlt="Iglesia de Fuente Álamo de Murcia."
+>
+  <div class="container-page max-w-4xl py-14">
+    <p class="mb-10 rounded-lg border-l-4 border-brand-500 bg-gray-50 px-5 py-4 text-gray-700">
+      ¿Buscas una empresa de reformas en toda la región? Visita nuestra página de
+      <a href="/" class="font-semibold text-brand-700 hover:underline">reformas en la Región de Murcia</a>.
+    </p>
+
+    <div class="content-prose">
+      <h2>Empresa de reformas en Fuente Álamo de Murcia</h2>
+      <p>
+        En Reformas La Cabaña S.L llevamos más de 20 años trabajando y somos tu empresa de reformas en Fuente Álamo de
+        confianza. El municipio es uno de nuestros principales focos de trabajo, además de ser la ubicación de nuestra
+        sede. Esto se traduce en que contamos con amplios conocimientos en materia urbanística municipal en el municipio,
+        además de una amplia variedad de trabajos realizados y testimonios que atestiguan la calidad de nuestras
+        reformas. Por supuesto también damos servicio en las distintas pedanías del municipio, como Las Palas,
+        Balsapintada, La Pinilla o las Cuevas. También trabajamos en la Hacienda del Álamo Golf Resort y complejos
+        similares a las afueras de la localidad.
+      </p>
+      <p>Ofrecemos los siguientes servicios en Fuente Álamo de Murcia:</p>
+      <ul>
+        <li>Construcción de obra nueva</li>
+        <li>Reformas integrales y parciales</li>
+        <li>Remodelación de cocinas, baños y habitaciones</li>
+        <li>Instalación de suelos de parquet, vinílicos, laminados, azulejos, mármol y granito.</li>
+        <li>Construcción de Piscinas</li>
+        <li>Gestión de permisos de obra, gestión de residuos o alquiler de contenedores.</li>
+      </ul>
+      <p>
+        Ante cualquier duda, puedes <a href="/contacto/">contactar con nosotros</a> a través de esta misma página,
+        escribiendo un email a {site.email}, llamando al 621 202 561 o visitando nuestra sede en {site.address}.
+      </p>
+    </div>
+  </div>
+
+  <section class="relative overflow-hidden bg-ink-900 py-16 text-white">
+    <Image src={fondo} alt="" widths={[768, 1280, 1920]} sizes="100vw" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+    <div class="container-page relative max-w-4xl">
+      <h2 class="mb-8 text-3xl font-extrabold">¿Por qué elegirnos para tu reforma en Fuente Álamo?</h2>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          reasons.map((r) => (
+            <li class="flex items-start gap-3 rounded-lg bg-white/10 p-4 backdrop-blur">
+              <svg class="mt-0.5 h-6 w-6 shrink-0 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="font-semibold">{r}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <div class="container-page max-w-4xl py-14">
+    <h2 class="section-title">Nuestros trabajos en el Municipio</h2>
+    <p class="mt-6 text-lg leading-8">
+      Al ser el municipio en el que comenzamos a realizar nuestra actividad profesional, tenemos muchas imágenes de
+      reformas realizadas en el municipio:
+    </p>
+    <div class="mt-8 grid gap-6 sm:grid-cols-3">
+      {
+        works.map((w) => (
+          <figure class="overflow-hidden rounded-xl bg-gray-50 shadow">
+            <Image src={w.img} alt={w.alt} widths={[320, 480, 640]} sizes="(min-width: 640px) 288px, 100vw" class="aspect-[4/3] w-full object-cover" />
+            <figcaption class="p-3 text-center text-sm font-semibold">{w.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="content-prose mt-14">
+      <h2>Aspectos a tener en cuenta sobre obras en la localidad</h2>
+      <p>
+        En caso de querer realizar ciertos tipos de obra en Fuente Álamo, debemos de atenernos a la regulación urbanística
+        del municipio, conseguir el permiso de obra correspondiente y abonar el importe del ICIO del municipio. En la
+        práctica esto supone presentar una comunicación previa al ayuntamiento, especificando las obras a realizar,
+        puedes
+        <a href="https://ayto-fuentealamo.es/wp-content/uploads/2018/02/U4-Urbanismo-comunicacion-previa-en-materia-de-urbanismo-v20180205.pdf" rel="noopener noreferrer">echar un vistazo a dicha declaración aquí</a>.
+        Una vez presentado el documento junto con toda la documentación adicional que nos exija el ayuntamiento,
+        deberemos abonar el ICIO correspondiente y presentar el justificante del mismo.
+      </p>
+      <p>
+        Tras esto podremos comenzar con nuestra obra, la cual debe de ser llevada a cabo por una empresa registrada en el
+        Registro de Empresas acreditadas del sector de la construcción. Otro aspecto a tener en cuenta es el plazo de las
+        obras, las cuales deberán finalizarse en un plazo de 6 meses desde la comunicación de las mismas. Por último
+        debemos tener en cuenta la gestión de los escombros y otros residuos de nuestra obra.
+      </p>
+      <p>
+        Si quieres saber más sobre la regulación urbanística del municipio te recomendamos visitar la
+        <a href="https://ayto-fuentealamo.es/urbanismo/" rel="noopener noreferrer">página del ayuntamiento</a>.
+      </p>
+
+      <h3>Obras que no necesitan licencia</h3>
+      <p>
+        Hay algunos tipos de obras menores que no necesitan de todo este proceso y que, en el caso de Fuente Álamo, no
+        necesitan si quiera de declaración responsable. Algunos ejemplos de obras que no necesitan licencia son:
+      </p>
+      <ul>
+        <li>Pintura, barnizados y otros acabados estéticos sin impacto en la estructura ni fachada de la vivienda.</li>
+        <li>Remodelación de suelos.</li>
+        <li>Alicatado de baños</li>
+        <li>Arreglo de goteras</li>
+        <li>Pequeñas labores de mantenimiento</li>
+      </ul>
+      <p>
+        En todos estos casos y en cualquier obra que no altere ni la fachada ni la estructura de la vivienda, no serán
+        necesarios los cambios descritos en la sección anterior.
+      </p>
+
+      <h2>Tipos de Vivienda populares en Fuente Álamo</h2>
+      <p>
+        En Fuente Álamo la población es de unos 18.000 habitantes contando las pedanías y de en torno a 10.000 en el
+        centro urbano. Esto se traduce en que hay espacio para distintos tipos de viviendas según la zona. En el centro
+        del pueblo hay bloques de apartamentos de menos de 5 pisos de altura, pero en los barrios residenciales como
+        Corverica abundan las viviendas unifamiliares adosadas.
+      </p>
+      <p>
+        En el caso de Las Palas, Balsapintada y el resto de pedanías todas las viviendas son adosados, chalets pareados o
+        chalets. También hay algunas parcelas de gran tamaño a las afueras de dichas localidades.
+      </p>
+
+      <h2>Obtener presupuesto para mi reforma en Fuente Álamo</h2>
+      <p>
+        Ahora que ya estás informado de todo lo que necesitas para llevar a cabo tu reforma en Fuente Álamo de Murcia, te
+        damos la opción de <a href="/presupuesto-reforma-murcia/">solicitar un presupuesto gratuito</a> con nosotros. No
+        te preocupes si al final no deseas llevar a cabo tu obra o si optas por otra empresa, el presupuesto no indica
+        ningún tipo de compromiso u obligación con nosotros. Obtendrás una respuesta a tu solicitud de presupuesto en
+        menos de 48 horas.
+      </p>
+      <p>
+        También te recomendamos que le eches un vistazo a <a href="/blog-de-reformas/">nuestro blog</a> si estás
+        interesado en el mundo de la construcción y quieres estar al tanto de las últimas novedades del mismo
+      </p>
+    </div>
+
+    <div class="panel mt-10">
+      <QuoteForm idPrefix="fuente-alamo" />
+    </div>
+  </div>
+</PageLayout>

@@ -1,0 +1,32 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import image from '../assets/img/cocinas.webp';
+---
+
+<ServiceLayout
+  title="Reforma de Cocinas en Murcia"
+  description="En Reformas La Cabaña S.L tenemos todo lo necesario para la reforma de cocinas en Murcia. Pide tu presupuesto de reforma gratis."
+  formHeading="¿Qué tipo de cocinas ofrecemos?"
+  image={image}
+  imageAlt="Cocina americana totalmente blanca con suelo y encimera de mármol. Imagen destacada de la página reforma de cocinas en Murcia, propiedad de Reformas La Cabaña S.L."
+>
+  <p>
+    Desde Reformas La Cabaña S.L nos adaptamos a tus necesidades y te ayudamos a crear la cocina de tus sueños. Nuestros
+    profesionales tienen experiencia en diseños de cocina tradicional, modernos, cocinas americanas… Hacemos reforma de
+    cocinas en Murcia con cualquier disposición que tengas en mente y en los materiales que quieras.
+  </p>
+  <p>
+    Si quieres saber más <a href="/sobre-nosotros/">sobre nuestros servicios</a> y obtener un presupuesto aproximado para
+    tu cocina rellena este formulario:
+  </p>
+
+  <Fragment slot="after">
+    <h3>Más información sobre la reforma de cocinas en Murcia</h3>
+    <p>
+      Si quieres saber más sobre la reforma de cocinas u otros temas relacionados con el mundo de las reformas y la
+      construcción, visita <a href="/blog-de-reformas/">nuestro blog</a>. En él encontrarás artículos de todo tipo que te
+      serán útiles para tomar las decisiones pertinentes a la hora de planificar tu reforma e incluso pequeños consejos de
+      mantenimiento para ahorrar gastos en el futuro.
+    </p>
+  </Fragment>
+</ServiceLayout>

@@ -1,0 +1,32 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import image from '../assets/img/mezclando-cemento.jpeg';
+import { site } from '../data/site';
+---
+
+<ServiceLayout
+  title="Reforma Integral en Murcia"
+  description="En Reformas La Cabaña S.L te proporcionamos todo lo necesario para que lleves a cabo tu reforma integral en Murcia de la mejor forma posible."
+  formHeading="Lleva a cabo tu reforma integral con nosotros"
+  image={image}
+  imageAlt="Obreros realizando una reforma. Imagen destacada de la sección sobre nosotros y reforma integral en Murcia, propiedad de Reformas La Cabaña S.L."
+>
+  <p>
+    En Reformas La Cabaña S.L estamos especializados en la reforma integral en murcia de viviendas, garajes y otras
+    construcciones. Nuestros profesionales cuentan con la formación y herramientas necesarias para llevar a cabo
+    cualquier tipo de arreglo o modificación en tu vivienda. Desde suelos hasta piscinas, cuéntanos las necesidades de tu
+    reforma y nosotros lo llevaremos a cabo. Nos avalan 20 años de experiencia cientos de clientes satisfechos. No dudes
+    más y <a href="/contacto/">contacta con nosotros</a> u obtén un presupuesto aproximado gratuito para tu reforma
+    rellenando el siguiente formulario:
+  </p>
+
+  <Fragment slot="after">
+    <h3>Información adicional sobre reformas</h3>
+    <p>
+      Si quieres saber más sobre reforma integral en Murcia y alrededores, o sobre temas relacionados te recomendamos que
+      <a href="/blog-de-reformas/">visites nuestro blog</a>. En él podrás encontrar información relevante sobre reformas,
+      construcción, mantenimiento de viviendas y mucho más. Si tienes cualquier duda puedes contactarnos en {site.email}
+      o llamar al {site.phone}.
+    </p>
+  </Fragment>
+</ServiceLayout>

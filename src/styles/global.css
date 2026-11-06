@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-50: #fff4e8;
+  --color-brand-500: #ff7b01;
+  --color-brand-600: #e66a00;
+  --color-brand-700: #b45300;
+  --color-brand-accent: #ff494a;
+  --color-surface: #f5f5f5;
+  --color-ink-700: #25262a;
+  --color-ink-800: #1e1e20;
+  --color-ink-900: #141416;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-[#fffffd] font-sans text-ink-700 antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-bold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500;
+  }
+  .btn-primary {
+    @apply bg-brand-500 text-ink-900 hover:bg-brand-600;
+  }
+  .btn-outline {
+    @apply border-2 border-white text-white hover:bg-white hover:text-ink-900;
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .panel {
+    @apply rounded-xl border-t-4 border-brand-500 bg-white p-6 shadow-lg ring-1 ring-black/5 sm:p-8;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-700 ring-1 ring-brand-500/30 transition-colors;
+  }
+  a.chip,
+  button.chip {
+    @apply hover:bg-brand-500 hover:text-ink-900;
+  }
+  .chip[aria-pressed='true'] {
+    @apply bg-brand-500 text-ink-900;
+  }
+  .section-title {
+    @apply relative pb-4 text-3xl font-extrabold text-ink-900 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-14 after:rounded after:bg-brand-500 after:content-[''];
+  }
+
+  /* Texto largo: párrafos, listas y encabezados con ritmo y sangrías homogéneos */
+  .content-prose {
+    @apply prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-ink-900 prose-a:font-semibold prose-a:text-brand-700 prose-strong:text-ink-900 prose-img:rounded-xl prose-img:shadow-lg;
+    text-wrap: pretty;
+  }
+  .content-prose > :first-child,
+  .content-prose > section:first-child > :first-child {
+    margin-top: 0;
+  }
+  .content-prose h2 {
+    @apply relative mb-5 mt-12 pb-3 text-2xl sm:text-3xl;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .content-prose h2::after {
+    @apply absolute -bottom-px left-0 h-[3px] w-14 rounded bg-brand-500;
+    content: '';
+  }
+  .content-prose h3 {
+    @apply mb-3 mt-9 text-xl;
+  }
+  .content-prose p {
+    @apply my-5 leading-8;
+  }
+  .content-prose ul {
+    @apply my-6 flex list-none flex-col gap-3 p-0;
+  }
+  .content-prose ul > li {
+    @apply relative m-0 rounded-lg border border-gray-100 bg-gray-50 py-3 pl-11 pr-4 leading-8;
+  }
+  .content-prose ul > li::before {
+    @apply absolute left-4 top-[1.05rem] h-5 w-5 rounded-full bg-brand-500 bg-center bg-no-repeat;
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141416' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E");
+    background-size: 70%;
+  }
+  .content-prose ol {
+    @apply my-6 space-y-3 pl-6;
+  }
+  .content-prose ol > li {
+    @apply pl-2 marker:font-bold marker:text-brand-600;
+  }
+  .content-prose figure,
+  .content-prose img {
+    @apply my-8;
+  }
+}
