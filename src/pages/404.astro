@@ -1,12 +1,38 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site, services } from '../data/site';
 ---
 
-<Layout title="Página no encontrada" description="La página que buscas no existe." noindex>
-  <section class="container-page py-32 text-center">
-    <p class="text-6xl font-extrabold text-brand-600">404</p>
-    <h1 class="mt-4 text-3xl font-extrabold text-ink-900">Página no encontrada</h1>
-    <p class="mt-4 text-gray-600">La página que buscas no existe o ha cambiado de dirección.</p>
-    <a href="/" class="btn btn-primary mt-8">Volver al inicio</a>
+<Layout title="Página no encontrada" description="La página que buscas no existe o ha cambiado de dirección." noindex>
+  <section class="container-page py-24 text-center">
+    <p class="text-7xl font-extrabold text-brand-600">404</p>
+    <h1 class="mt-4 text-3xl font-extrabold text-ink-900 sm:text-4xl">Esta página no existe</h1>
+    <p class="mx-auto mt-4 max-w-xl text-gray-600">
+      Puede que el enlace esté roto o que la página haya cambiado de dirección. Puedes volver al inicio, consultar nuestros servicios o contactar con nosotros.
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn btn-primary">Volver al inicio</a>
+      <a href="/presupuesto-reforma-murcia/" class="btn btn-outline">Pedir presupuesto</a>
+      <a href={site.phoneHref} class="btn btn-outline">Llamar: {site.phone}</a>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-3xl">
+      <h2 class="text-lg font-bold text-ink-900">Quizá buscabas alguno de nuestros servicios</h2>
+      <ul class="mt-6 grid gap-3 text-left sm:grid-cols-2">
+        {services.map((s) => (
+          <li>
+            <a href={s.href} class="block rounded-lg border border-gray-200 px-4 py-3 font-medium text-ink-900 transition hover:border-brand-600 hover:text-brand-600">
+              {s.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/blog-de-reformas/" class="block rounded-lg border border-gray-200 px-4 py-3 font-medium text-ink-900 transition hover:border-brand-600 hover:text-brand-600">
+            Blog de reformas
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
 </Layout>
